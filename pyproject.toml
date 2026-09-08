@@ -1,0 +1,19 @@
+[project]
+name = "seedance-mcp"
+version = "0.1.0"
+description = "MCP server for Volcano Ark Seedance 2.5 video generation"
+readme = "README.md"
+requires-python = ">=3.12.3"
+dependencies = [
+    "httpx>=0.28.1",
+    "mcp[cli]>=2.1.1",
+    "python-dotenv>=1.1.1",
+    "volcengine-python-sdk>=5.0.48",
+]
+
+[project.scripts]
+seedance-mcp = "seedance_mcp.server:main"
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13.0"]
+build-backend = "uv_build"
