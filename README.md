@@ -48,11 +48,11 @@ VOLCENGINE_SECRET_KEY=
 VOLCENGINE_SESSION_TOKEN=
 ```
 
-| Variable | Purpose | Required |
-|---|---|---|
-| `ARK_API_KEY` | Seedance 2.5 video generation API | For video generation |
-| `VOLCENGINE_ACCESS_KEY` | Asset library Access Key | For asset operations |
-| `VOLCENGINE_SECRET_KEY` | Asset library Secret Key | For asset operations |
+| Variable                     | Purpose                                     | Required                 |
+| ---------------------------- | ------------------------------------------- | ------------------------ |
+| `ARK_API_KEY`              | Seedance 2.5 video generation API           | For video generation     |
+| `VOLCENGINE_ACCESS_KEY`    | Asset library Access Key                    | For asset operations     |
+| `VOLCENGINE_SECRET_KEY`    | Asset library Secret Key                    | For asset operations     |
 | `VOLCENGINE_SESSION_TOKEN` | Token issued with temporary STS credentials | Only for temporary AK/SK |
 
 A long-lived AK/SK pair does not require a session token. Never commit `.env` or share its contents.
@@ -70,6 +70,23 @@ The SSE endpoint is available at:
 ```text
 http://127.0.0.1:8000/sse
 ```
+
+### Custom Host and Port
+
+The listening address and port are configurable. The defaults are `127.0.0.1` and `8000`. Add these optional variables to `.env` to override them:
+
+```env
+MCP_HOST=0.0.0.0
+MCP_PORT=9000
+```
+
+After changing them, restart the server. With the example above:
+
+- Local clients connect to `http://127.0.0.1:9000/sse`.
+- Remote clients connect to `http://<server-ip-or-domain>:9000/sse`.
+- `0.0.0.0` is a bind address and must not be used as the client URL.
+
+Listening on `0.0.0.0` exposes the MCP service to the network. Restrict access with a firewall or security group and use an authenticated HTTPS reverse proxy for public deployments.
 
 Press `Ctrl+C` in the server terminal to stop it. After changing code or `.env`, restart it with:
 
@@ -102,35 +119,35 @@ Restart the MCP server or reload the editor window after changing this configura
 
 ### Video Tasks
 
-| Tool | Description |
-|---|---|
-| `seedance_create_video` | Create a Seedance 2.5 generation task |
-| `seedance_get_video_task` | Retrieve one task and its result |
-| `seedance_list_video_tasks` | List video tasks created within the last seven days |
-| `seedance_wait_video_task` | Poll a task until it reaches a terminal state |
-| `seedance_cancel_or_delete_video_task` | Cancel a queued task or delete a task record |
-| `seedance_25_capabilities` | Show supported capabilities and parameter limits |
+| Tool                                     | Description                                         |
+| ---------------------------------------- | --------------------------------------------------- |
+| `seedance_create_video`                | Create a Seedance 2.5 generation task               |
+| `seedance_get_video_task`              | Retrieve one task and its result                    |
+| `seedance_list_video_tasks`            | List video tasks created within the last seven days |
+| `seedance_wait_video_task`             | Poll a task until it reaches a terminal state       |
+| `seedance_cancel_or_delete_video_task` | Cancel a queued task or delete a task record        |
+| `seedance_25_capabilities`             | Show supported capabilities and parameter limits    |
 
 ### Asset Groups
 
-| Tool | Description |
-|---|---|
-| `seedance_create_asset_group` | Create a private virtual-character asset group |
-| `seedance_list_asset_groups` | List and filter asset groups |
-| `seedance_get_asset_group` | Retrieve one asset group |
-| `seedance_update_asset_group` | Update an asset group's name or description |
+| Tool                            | Description                                     |
+| ------------------------------- | ----------------------------------------------- |
+| `seedance_create_asset_group` | Create a private virtual-character asset group  |
+| `seedance_list_asset_groups`  | List and filter asset groups                    |
+| `seedance_get_asset_group`    | Retrieve one asset group                        |
+| `seedance_update_asset_group` | Update an asset group's name or description     |
 | `seedance_delete_asset_group` | Permanently delete a group and all assets in it |
 
 ### Assets
 
-| Tool | Description |
-|---|---|
-| `seedance_create_asset` | Upload an asset from a public URL |
-| `seedance_list_assets` | List and filter assets |
-| `seedance_get_asset` | Retrieve asset details and processing status |
-| `seedance_wait_asset` | Wait for asset processing to complete |
-| `seedance_update_asset` | Update an asset name |
-| `seedance_delete_asset` | Permanently delete an asset |
+| Tool                      | Description                                  |
+| ------------------------- | -------------------------------------------- |
+| `seedance_create_asset` | Upload an asset from a public URL            |
+| `seedance_list_assets`  | List and filter assets                       |
+| `seedance_get_asset`    | Retrieve asset details and processing status |
+| `seedance_wait_asset`   | Wait for asset processing to complete        |
+| `seedance_update_asset` | Update an asset name                         |
+| `seedance_delete_asset` | Permanently delete an asset                  |
 
 Asset uploads accept public HTTP/HTTPS URLs only. Local file paths and Base64 payloads are not supported. An asset must be `Active` before it can be used for video generation.
 
