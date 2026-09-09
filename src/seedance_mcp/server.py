@@ -265,7 +265,7 @@ def build_create_body(
     )
 
     body: dict[str, Any] = {
-        "model": get_settings().model or MODEL_ID,
+        "model": MODEL_ID,
         "content": content,
         "resolution": resolution,
         "ratio": ratio,
@@ -752,7 +752,7 @@ def seedance_25_capabilities() -> str:
     """返回本 MCP 已实现的 Seedance 2.5 官方能力边界。"""
     return _dump(
         {
-            "model": get_settings().model or MODEL_ID,
+            "model": MODEL_ID,
             "resolution": list(RESOLUTIONS),
             "ratio": list(RATIOS),
             "duration": {"default": -1, "seconds": [4, 30]},
