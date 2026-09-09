@@ -30,7 +30,7 @@ def get_settings() -> Settings:
     return Settings(
         api_key=os.getenv("ARK_API_KEY", "").strip(),
         base_url=os.getenv("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3").rstrip("/"),
-        model=os.getenv("ARK_MODEL", "doubao-seedance-2-5-260628").strip(),
+        model=os.getenv("ARK_MODEL", "").strip(),
         timeout_seconds=float(os.getenv("ARK_TIMEOUT_SECONDS", "60")),
         max_retries=int(os.getenv("ARK_MAX_RETRIES", "3")),
         host=os.getenv("MCP_HOST", "127.0.0.1"),

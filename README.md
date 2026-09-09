@@ -57,6 +57,28 @@ VOLCENGINE_SESSION_TOKEN=
 
 A long-lived AK/SK pair does not require a session token. Never commit `.env` or share its contents.
 
+### Custom Model or Inference Endpoint
+
+The default model identifier is defined near the top of `src/seedance_mcp/server.py`:
+
+```python
+MODEL_ID = "doubao-seedance-2-5-260628"
+```
+
+You may replace it with your own Seedance 2.5 inference endpoint ID:
+
+```python
+MODEL_ID = "ep-your-seedance-2-5-endpoint-id"
+```
+
+The recommended approach is to leave the source unchanged and add the optional `ARK_MODEL` variable to `.env`:
+
+```env
+ARK_MODEL=ep-your-seedance-2-5-endpoint-id
+```
+
+`ARK_MODEL` takes precedence over `MODEL_ID`. If it is absent or empty, the server uses `MODEL_ID`. Restart the MCP server after changing either value.
+
 ## Install and Run
 
 ```bash

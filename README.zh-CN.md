@@ -57,6 +57,28 @@ VOLCENGINE_SESSION_TOKEN=
 
 长期 AK/SK 不需要 Session Token，可将该变量留空。不要将 `.env` 提交到 Git 或发送给他人。
 
+### 自定义模型或推理接入点
+
+默认模型标识定义在 `src/seedance_mcp/server.py` 顶部：
+
+```python
+MODEL_ID = "doubao-seedance-2-5-260628"
+```
+
+可以将它替换成自己的 Seedance 2.5 推理接入点 ID：
+
+```python
+MODEL_ID = "ep-your-seedance-2-5-endpoint-id"
+```
+
+更推荐保留源码默认值，在 `.env` 中额外设置可选变量 `ARK_MODEL`：
+
+```env
+ARK_MODEL=ep-your-seedance-2-5-endpoint-id
+```
+
+`ARK_MODEL` 的优先级高于 `MODEL_ID`；未配置或留空时才使用 `MODEL_ID`。修改任意一项后都需要重启 MCP Server。
+
 ## 安装与启动
 
 ```bash

@@ -18,7 +18,7 @@ from .client import ArkAPIError, ark_request
 from .config import get_settings
 
 
-MODEL_ID = ""
+MODEL_ID = "doubao-seedance-2-5-260628"
 RATIOS = ("16:9", "4:3", "1:1", "3:4", "9:16", "21:9", "adaptive")
 RESOLUTIONS = ("480p", "720p", "1080p")
 TASK_TYPES = ("auto", "reference", "edit", "extend")
